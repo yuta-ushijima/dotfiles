@@ -1,3 +1,55 @@
+if has('vim_starting')
+   " 初回起動時のみruntimepathにneobundleのパスを指定する
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" NeoBundleを初期化
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" インストールするプラグインをここに記述
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'w0ng/vim-hybrid'
+" カラースキーム
+NeoBundle 'cocopon/iceberg.vim'
+
+call neobundle#end()
+
+" hybridの設定
+let g:hybrid_use_iTerm_colors = 1
+colorscheme hybrid
+syntax on
+
+" 行番号の色を設定
+hi LineNr ctermbg=0 ctermfg=0
+hi CursorLineNr ctermbg=4 ctermfg=0
+set cursorline
+hi clear CursorLinou
+
+" ファイルタイプ別のプラグイン/インデントを有効にする
+filetype plugin indent on
+
+colorscheme "cocopon/iceberg.vim"
+if &term =~ "xterm-256color" || "screen-256color"
+  set t_Co=256
+  set t_Sf=[3%dm
+  set t_Sb=[4%dm
+elseif &term =~ "xterm-color"
+  set t_Co=8
+  set t_Sf=[3%dm
+  set t_Sb=[4%dm
+endif
+
+syntax enable
+hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
+
+set expandtab "タブ入力を複数の空白入力に置き換える
+set tabstop=2 "画面上でタブ文字が占める幅
+set shiftwidth=2 "自動インデントでずれる幅
+set softtabstop=2 "連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set autoindent "改行時に前の行のインデントを継続する
+set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+
 " setting
 "文字コードをUFT-8に設定
 set fenc=utf-8
@@ -54,17 +106,6 @@ nnoremap k gk
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
 set list listchars=tab:\▸\-
-
-" Tab文字を半角スペースにする
-set expandtab
-
-" 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=2
-
-" 行頭でのTab文字の表示幅
-set shiftwidth=2
-
-
 
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する

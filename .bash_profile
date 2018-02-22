@@ -1,6 +1,7 @@
+export RBENV_ROOT=$HOME/local/rbenv
+export PATH=$RBENV_ROOT/bin:$HOME/local/bin:$PATH
 eval "$(rbenv init -)"
 export PATH="/usr/local/share/npm/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
 
@@ -37,3 +38,82 @@ alias show="git show"
 alias l="git log"
 
 alias fpush='git push -f origin HEAD'
+export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/opt/libxml2/bin:/Users/ushijimayuuta/.nodebrew/current/bin:/Users/ushijimayuuta/dotfiles/.rbenv/bin:/usr/local/share/npm/bin:/Users/ushijimayuuta/.rbenv/shims:/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+eval
+eval 
+eval 
+eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
+export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
+export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
+export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}

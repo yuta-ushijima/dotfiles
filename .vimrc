@@ -1,4 +1,6 @@
-as('vim_starting')
+colorscheme default
+
+if has('vim_starting')
    " 初回起動時のみruntimepathにneobundleのパスを指定する
    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif

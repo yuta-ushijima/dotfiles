@@ -1,4 +1,4 @@
-if has('vim_starting')
+as('vim_starting')
    " 初回起動時のみruntimepathにneobundleのパスを指定する
    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
@@ -23,8 +23,6 @@ syntax on
 " 行番号の色を設定
 hi LineNr ctermbg=0 ctermfg=0
 hi CursorLineNr ctermbg=4 ctermfg=0
-set cursorline
-hi clear CursorLinou
 
 " ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
@@ -138,4 +136,3 @@ inoremap <Right> <Nop>
 
 " helpを日本語化
 set helplang=ja,en
-

@@ -1,119 +1,56 @@
-export RBENV_ROOT=$HOME/local/rbenv
-export PATH=$RBENV_ROOT/bin:$HOME/local/bin:$PATH
-eval "$(rbenv init -)"
-export PATH="/usr/local/share/npm/bin:$PATH"
+export HOMEBREW_GITHUB_API_TOKEN=7e87b36e44858d6391bc2c1952895042d9a240f9
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-export PATH="/usr/local/opt/libxml2/bin:$PATH"
+eval "$(rbenv init -)"
+export GOPATH=$HOME/.go
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# alias
-alias be='bundle exec'
-alias bi='bundle install --path vendor/bundle --jobs=4'
-alias ls='ls -G'
-alias rs='be rails s -b 0.0.0.0'
+
+if [ $UID -eq 0 ]; then
+    PS1="\[\033[31m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
+else
+    PS1="\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
+fi
+
+# lsコマンドの設定(ディレクトリに色と/をつける)
+alias ls='ls -FG'
+alias ll='ls -alFG'
 
 # alias:cd
 alias cdd='cd $HOME/Desktop'
-alias cddown='cd $HOME/Downloads'
-alias cdli='cd $HOME/git/like-slack'
+alias cdmtd='cd $HOME/git/sakura-master-data'
 
 # alias:git
-alias g="git"
-alias s="git status"
-alias a="git add"
-alias rb="git rebase"
-alias cm="git commit"
-alias b="git branch"
-alias br="git branch -r"
-alias bg="git branch |grep"
-alias brg="git branch -r |gpep"
-alias co="git checkout"
-alias cow="git checkout working"
-alias cod="git checkout development"
-alias com="git checkout master"
-alias d="git diff"
-alias ds="git diff --staged"
-alias push="git push origin HEAD"
-alias pull="git pull origin HEAD"
-alias show="git show"
-alias l="git log"
+alias g="git "
+alias gs="git status "
+alias ga="git add "
+alias grb="git rebase "
+alias gcm="git commit "
+alias gb="git branch "
+alias gbr="git branch -r "
+alias gbg="git branch |grep "
+alias gbrg="git branch -r |gpep "
+alias gco="git checkout "
+alias gcow="git checkout working "
+alias gcod="git checkout development "
+alias gcom="git checkout master "
+alias gd="git diff "
+alias gds="git diff --staged "
+alias gpush="git push origin HEAD "
+alias gpull="git pull origin HEAD "
 
-alias fpush='git push -f origin HEAD'
-export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/opt/libxml2/bin:/Users/ushijimayuuta/.nodebrew/current/bin:/Users/ushijimayuuta/dotfiles/.rbenv/bin:/usr/local/share/npm/bin:/Users/ushijimayuuta/.rbenv/shims:/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-eval
-eval 
-eval 
-eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
-export RBENV_SHELL=bash
-source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
-command rbenv rehash 2>/dev/null
-rbenv() {
-  local command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
+alias gsh="git show "
+alias gl="git log "
+alias gpl="git pull "
+alias gfpu="git push -f "
+alias gpu="git push "
+# TEST
+git config --global alias.co checkout
 
-  case "$command" in
-  rehash|shell)
-    eval "$(rbenv "sh-$command" "$@")";;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}
-export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
-export RBENV_SHELL=bash
-source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
-command rbenv rehash 2>/dev/null
-rbenv() {
-  local command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
+# alias:ls
+alias ls='ls -l'
 
-  case "$command" in
-  rehash|shell)
-    eval "$(rbenv "sh-$command" "$@")";;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}
-export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
-export RBENV_SHELL=bash
-source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
-command rbenv rehash 2>/dev/null
-rbenv() {
-  local command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
+# alias:clear
+alias clear='printf "\e[H\e[2J"'
 
-  case "$command" in
-  rehash|shell)
-    eval "$(rbenv "sh-$command" "$@")";;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}
-export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
-export RBENV_SHELL=bash
-source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
-command rbenv rehash 2>/dev/null
-rbenv() {
-  local command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
-
-  case "$command" in
-  rehash|shell)
-    eval "$(rbenv "sh-$command" "$@")";;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}
+#branch名のタブ補完
+source ~/.git-completion.bash

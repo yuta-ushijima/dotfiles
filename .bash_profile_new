@@ -1,0 +1,121 @@
+eval "$(rbenv init -)"
+export PATH="/usr/local/share/npm/bin:$PATH"
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH="/usr/local/opt/libxml2/bin:$PATH"
+
+# alias
+alias be='bundle exec'
+alias bi='bundle install --path vendor/bundle --jobs=4'
+alias ls='ls -G'
+alias rs='be rails s -b 0.0.0.0'
+
+# alias:cd
+alias cdd='cd $HOME/Desktop'
+alias cddown='cd $HOME/Downloads'
+alias cdli='cd $HOME/git/like-slack'
+
+# alias:git
+alias g="git"
+alias gs="git status"
+alias ga="git add"
+alias grb="git rebase"
+alias gcm="git commit"
+alias gb="git branch"
+alias gbr="git branch -r"
+alias gbg="git branch |grep"
+alias gbrg="git branch -r |gpep"
+alias gco="git checkout"
+alias gcow="git checkout working"
+alias gcod="git checkout development"
+alias gcom="git checkout master"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gpu="git push"
+alias gpl="git pull"
+alias gsh="git show"
+alias gl="git log"
+
+alias gfpu='git push -f'
+export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/opt/libxml2/bin:/Users/ushijimayuuta/.nodebrew/current/bin:/Users/ushijimayuuta/dotfiles/.rbenv/bin:/usr/local/share/npm/bin:/Users/ushijimayuuta/.rbenv/shims:/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+eval
+eval 
+eval 
+eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
+export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
+export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
+export PATH=/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+eval export PATH="/Users/ushijimayuuta/.rbenv/shims:${PATH}"
+export RBENV_SHELL=bash
+source '/usr/local/Cellar/rbenv/1.1.1/libexec/../completions/rbenv.bash'
+command rbenv rehash 2>/dev/null
+rbenv() {
+  local command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval "$(rbenv "sh-$command" "$@")";;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}
+
+# .git-comletion.bashの読み込み
+source ~/.git-completion.bash
+PATH=/Users/ushijimayuuta/.rbenv/shims:/Users/ushijimayuuta/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/sbin

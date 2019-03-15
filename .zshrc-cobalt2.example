@@ -240,7 +240,7 @@ alias bi='bundle install --path vendor/bundle --jobs=4'
 
 # alias docker
 alias docm="docker-compose"
-alias dksize="docker ps --format "table {{.ID}} {{.Names}} {{.Ports}} {{.Size}}""
+alias dksize='docker ps --format "table {{.ID}} {{.Names}} {{.Ports}} {{.Size}}"'
 
 # alias:git
 alias g="git"

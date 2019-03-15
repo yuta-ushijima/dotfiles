@@ -40,13 +40,73 @@ case $setting in
 
     echo "=================="
     echo "現在のzshのバージョン: $(/usr/local/bin/zsh --version)"
-    echo "==================" ;;
-
+    echo "==================" 
+    
+    source ~/.bash_profile >> ~/.zshrc
+    source ~/.zshrc
+ 
+    echo "zshをインストールしました。
+         .zshrcでexport PATH=$HOME/bin:/usr/local/bin:$PATHをコメントアウトしてください。" ;;
 esac
 
 read -p "oh my zshをインストールしますか？ (y/n)" ok < /dev/tty
 case $ok in
-  y|Y) curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+  y|Y) curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh ;;
 esac
+
+read -p "ITerm2をインストールしますか？ (y/n)" ok < /dev/tty
+case $ok in
+  y|Y) brew cask install iterm2 ;;
+esac
+
+read -p "zshにrbenv/ruby-buildをインストールしますか？ (y/n)" ok < /dev/tty
+case $ok in
+ y|Y) brew update
+      brew install rbenv ruby-build
+      echo 'eval "$(rbenv init -)"' >> ~/.zshrc
+      source ~/.zshrc
+     
+      echo "rbenvとruby-buildをインストールしました。"
+      
+      echo "=================="
+      echo "現在のrbenvのバージョン: $(rbenv --version)"
+      echo "=================="
+
+      echo "=================="
+      echo "現在のインストール済Rubyのバージョン \n $(rbenv versions)"      
+      echo "==================" ;;
+esac
+
+read -p "MySQL5.7をインストールしますか？ (y/n)" ok < /dev/tty
+case $ok in
+  y|Y) brew install mysql@5.7
+       brew link mysql@5.7 --force
+       
+       echo "MySQL5.7のインストールが完了しました。" ;;
+esac
+
+read -p "Nokogiri関連のライブラリをインストールしますか? (y/n)" ok < /dev/tty
+case $ok in
+  y|Y) brew install libxml2
+      echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> ~/.zshrc
+      export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
+      export LDFLAGS="-L/usr/local/opt/libxml2/lib"
+      export CPPFLAGS="-I/usr/local/opt/libxml2/include" 
+      echo "インストールが完了しました。" ;;
+esac
+
+read -p "Redisをインストールしますか？ (y/n)" ok < /dev/tty
+case $ok in
+  y|Y) brew install redis
+      echo "インストールが完了しました。" ;;
+esac
+
+read -p "yarnをインストールしますか？ (y/n)" ok < /dev/tty
+case $ok in
+  y|Y) brew install yarn
+       echo "インストールが完了しました。" ;;
+esac
+
+
 
 

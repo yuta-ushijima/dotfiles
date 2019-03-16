@@ -2,7 +2,7 @@
 set -e
 
 read -p "Homebrewをインストールしますか？ (y/n)" install < /dev/tty
-case $install in
+case ${install} in
   y|Y) 
 
     echo "Start Install Homebrew..."
@@ -15,7 +15,7 @@ esac
 
 
 read -p "ログインシェルをzshに変更しますか？ (y/n)" setting < /dev/tty
-case $setting in
+case ${setting} in
   y|Y)
     echo "=================="
     echo "現在のzshのPATH: $(which zsh)"
@@ -41,8 +41,15 @@ case $setting in
     echo "=================="
     echo "現在のzshのバージョン: $(/usr/local/bin/zsh --version)"
     echo "==================" 
-    
-    source ~/.bash_profile >> ~/.zshrc
+
+    FILE="~/.bash_profile"
+
+    if [[ -e ${FILE} ]]; then
+      source ${FILE} >> ~/.zshrc
+    elif [[! -e ${FILE} ]]; then
+      touch ${FILE}
+    fi
+
     source ~/.zshrc
  
     echo "zshをインストールしました。
@@ -50,17 +57,17 @@ case $setting in
 esac
 
 read -p "oh my zshをインストールしますか？ (y/n)" ok < /dev/tty
-case $ok in
+case ${ok} in
   y|Y) curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh ;;
 esac
 
 read -p "ITerm2をインストールしますか？ (y/n)" ok < /dev/tty
-case $ok in
+case ${ok} in
   y|Y) brew cask install iterm2 ;;
 esac
 
 read -p "zshにrbenv/ruby-buildをインストールしますか？ (y/n)" ok < /dev/tty
-case $ok in
+case ${ok} in
  y|Y) brew update
       brew install rbenv ruby-build
       echo 'eval "$(rbenv init -)"' >> ~/.zshrc
@@ -78,7 +85,7 @@ case $ok in
 esac
 
 read -p "MySQL5.7をインストールしますか？ (y/n)" ok < /dev/tty
-case $ok in
+case ${ok} in
   y|Y) brew install mysql@5.7
        brew link mysql@5.7 --force
        
@@ -86,7 +93,7 @@ case $ok in
 esac
 
 read -p "Nokogiri関連のライブラリをインストールしますか? (y/n)" ok < /dev/tty
-case $ok in
+case ${ok} in
   y|Y) brew install libxml2
       echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> ~/.zshrc
       export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
@@ -96,13 +103,13 @@ case $ok in
 esac
 
 read -p "Redisをインストールしますか？ (y/n)" ok < /dev/tty
-case $ok in
+case ${ok} in
   y|Y) brew install redis
       echo "インストールが完了しました。" ;;
 esac
 
 read -p "yarnをインストールしますか？ (y/n)" ok < /dev/tty
-case $ok in
+case ${ok} in
   y|Y) brew install yarn
        echo "インストールが完了しました。" ;;
 esac

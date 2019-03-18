@@ -75,7 +75,7 @@ case ${Answer} in
 
     echo "zshをインストールしました。一度プロセスを終了します。"
 
-    echo ${__pass} | sudo -S --exec $SHELL -l #ログインシェルの再読み込み
+    exec $SHELL -l #ログインシェルの再読み込み
 
     ;;
 

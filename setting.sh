@@ -59,8 +59,6 @@ case ${Answer} in
     echo "現在のzshのバージョン: $(/usr/local/bin/zsh --version)"
     echo "=================="
 
-    exec $SHELL -l #ログインシェルの再読み込み
-
     echo "=================="
     echo "現在のログインシェル: $(echo $SHELL)"
     echo "=================="
@@ -75,23 +73,16 @@ case ${Answer} in
 
     source ~/.zshrc
 
-    echo "zshをインストールしました" ;;
+    echo "zshをインストールしました。一度プロセスを終了します。"
+
+    exec $SHELL -l #ログインシェルの再読み込み
+
+    ;;
 
   n|N)
     echo "インストールをスキップしました" ;;
 esac
 echo " ------------ END ------------"
-
-echo " ------------ oh my zsh ------------"
-read -p "oh my zshをインストールしますか？ (y/n)" Answer < /dev/tty
-case ${Answer} in
-  y|Y) curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh ;;
-
-  n|N)
-    echo "インストールをスキップしました" ;;
-esac
-echo " ------------ END ------------"
-
 
 echo " ------------ ITerm2 ------------"
 read -p "ITerm2をインストールしますか？ (y/n)" Answer < /dev/tty
@@ -186,7 +177,3 @@ case ${Answer} in
     echo "インストールをスキップしました" ;;
 esac
 echo " ------------ END ------------"
-
-
-
-

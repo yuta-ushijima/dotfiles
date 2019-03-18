@@ -4,7 +4,7 @@ set -e
 echo " ------------ Set Password ------------"
 # パスワードを記憶
 read -sp "このMacにログインした際のパスワードを入力してください: " __pass;
-echo " ------------ END ------------"
+echo "\n ------------ END ------------"
 
 echo " ------------ Homebrew ------------"
 read -p "Homebrewをインストールしますか？ (y/n)" Answer < /dev/tty

@@ -43,7 +43,7 @@ case ${Answer} in
     case ${Answer} in
       y|Y)
         brew install zsh zsh-syntax-highlighting
-        echo ${__pass} | sudo -s -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
+        echo ${__pass} | sudo -S -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
         chsh -s /usr/local/bin/zsh
         ;;
 
@@ -75,7 +75,7 @@ case ${Answer} in
 
     echo "zshをインストールしました。一度プロセスを終了します。"
 
-    exec $SHELL -l #ログインシェルの再読み込み
+    echo ${__pass} | sudo -S --exec $SHELL -l #ログインシェルの再読み込み
 
     ;;
 

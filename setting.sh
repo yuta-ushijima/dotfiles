@@ -1,8 +1,14 @@
 #!/bin/sh
 set -e
 
-read -p "Homebrewをインストールしますか？ (y/n)" install < /dev/tty
-case ${install} in
+echo " ------------ Set Password ------------"
+# パスワードを記憶
+read -sp "このMacにログインした際のパスワードを入力してください: " __pass;
+echo " ------------ END ------------"
+
+echo " ------------ Homebrew ------------"
+read -p "Homebrewをインストールしますか？ (y/n)" Answer < /dev/tty
+case ${Answer} in
   y|Y) 
 
     echo "Start Install Homebrew..."
@@ -11,11 +17,15 @@ case ${install} in
 
     echo "Install Homebrew is Complete!" ;;
 
+  n|N)
+    echo "インストールをスキップしました" ;;
+
 esac
+echo " ------------ END ------------"
 
-
-read -p "ログインシェルをzshに変更しますか？ (y/n)" setting < /dev/tty
-case ${setting} in
+echo " ------------ zsh ------------"
+read -p "ログインシェルをzshに変更しますか？ (y/n)" Answer < /dev/tty
+case ${Answer} in
   y|Y)
     echo "=================="
     echo "現在のzshのPATH: $(which zsh)"
@@ -29,51 +39,79 @@ case ${setting} in
     echo "Homebrewでインストールできるzshのバージョン: $(brew info zsh)"
     echo "=================="
 
-    read -p "このままzshをインストールしていいですか？ (y/n)" yes < /dev/tty
-    case $yes in
-      y|Y) brew install zsh ;;
+    read -p "このままzshをインストールしていいですか？ (y/n)" Answer < /dev/tty
+    case ${Answer} in
+      y|Y)
+        brew install zsh zsh-syntax-highlighting
+        echo ${__pass} | sudo -s -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
+        chsh -s /usr/local/bin/zsh
+        ;;
+
+      n|N)
+        echo "インストールをスキップしました" ;;
     esac
-    
+
     echo "=================="
     echo "現在のzshのPATH: $(which zsh)"
     echo "=================="
 
     echo "=================="
     echo "現在のzshのバージョン: $(/usr/local/bin/zsh --version)"
-    echo "==================" 
+    echo "=================="
 
-    FILE="~/.bash_profile"
+    exec $SHELL -l #ログインシェルの再読み込み
+
+    echo "=================="
+    echo "現在のログインシェル: $(echo $SHELL)"
+    echo "=================="
+
+    FILE="${HOME}/.bash_profile"
 
     if [[ -e ${FILE} ]]; then
       source ${FILE} >> ~/.zshrc
-    elif [[! -e ${FILE} ]]; then
+    elif [[ ! -e ${FILE} ]]; then
       touch ${FILE}
     fi
 
     source ~/.zshrc
- 
-    echo "zshをインストールしました。
-         .zshrcでexport PATH=$HOME/bin:/usr/local/bin:$PATHをコメントアウトしてください。" ;;
-esac
 
-read -p "oh my zshをインストールしますか？ (y/n)" ok < /dev/tty
-case ${ok} in
+    echo "zshをインストールしました" ;;
+
+  n|N)
+    echo "インストールをスキップしました" ;;
+esac
+echo " ------------ END ------------"
+
+echo " ------------ oh my zsh ------------"
+read -p "oh my zshをインストールしますか？ (y/n)" Answer < /dev/tty
+case ${Answer} in
   y|Y) curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh ;;
-esac
 
-read -p "ITerm2をインストールしますか？ (y/n)" ok < /dev/tty
-case ${ok} in
+  n|N)
+    echo "インストールをスキップしました" ;;
+esac
+echo " ------------ END ------------"
+
+
+echo " ------------ ITerm2 ------------"
+read -p "ITerm2をインストールしますか？ (y/n)" Answer < /dev/tty
+case ${Answer} in
   y|Y) brew cask install iterm2 ;;
-esac
 
-read -p "zshにrbenv/ruby-buildをインストールしますか？ (y/n)" ok < /dev/tty
-case ${ok} in
+  n|N)
+    echo "インストールをスキップしました" ;;
+esac
+echo " ------------ END ------------"
+
+echo " ------------ Install Ruby ------------"
+read -p "zshにrbenv/ruby-buildをインストールしますか？ (y/n)" Answer < /dev/tty
+case ${Answer} in
  y|Y) brew update
       brew install rbenv ruby-build
       echo 'eval "$(rbenv init -)"' >> ~/.zshrc
       source ~/.zshrc
      
-      echo "rbenvとruby-buildをインストールしました。"
+      echo "rbenvとruby-buildをインストールしました"
       
       echo "=================="
       echo "現在のrbenvのバージョン: $(rbenv --version)"
@@ -81,38 +119,73 @@ case ${ok} in
 
       echo "=================="
       echo "現在のインストール済Rubyのバージョン \n $(rbenv versions)"      
-      echo "==================" ;;
-esac
+      echo "=================="
 
-read -p "MySQL5.7をインストールしますか？ (y/n)" ok < /dev/tty
-case ${ok} in
+      read -p "最新版のrubyをglobalのバージョンとして設定しますか？ (y/n)" Answer < /dev/tty
+      case ${Answer} in
+        y|Y)
+          ruby_latest=$(rbenv install -l | grep -v '[a-z]' | tail -1 | sed 's/ //g')
+          rbenv install ${ruby_latest}
+          rbenv global ${ruby_latest}
+          rbenv rehash
+          echo "===インストールされたRubyのバージョン=== \n $(ruby -v) \n======"
+          ;;
+
+        n|N)
+          echo "インストールをスキップしました" ;;
+      esac;;
+
+ n|N)
+    echo "インストールをスキップしました" ;;
+esac
+echo " ------------ END ------------"
+
+echo " ------------ MySQL ------------"
+read -p "MySQL5.7をインストールしますか？ (y/n)" Answer < /dev/tty
+case ${Answer} in
   y|Y) brew install mysql@5.7
        brew link mysql@5.7 --force
        
-       echo "MySQL5.7のインストールが完了しました。" ;;
+       echo "MySQL5.7のインストールが完了しました" ;;
+  n|N)
+    echo "インストールをスキップしました" ;;
 esac
+echo " ------------ END ------------"
 
-read -p "Nokogiri関連のライブラリをインストールしますか? (y/n)" ok < /dev/tty
-case ${ok} in
+echo " ------------ Nokogiri ------------"
+read -p "Nokogiri関連のライブラリをインストールしますか? (y/n)" Answer < /dev/tty
+case ${Answer} in
   y|Y) brew install libxml2
       echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> ~/.zshrc
       export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
       export LDFLAGS="-L/usr/local/opt/libxml2/lib"
       export CPPFLAGS="-I/usr/local/opt/libxml2/include" 
-      echo "インストールが完了しました。" ;;
-esac
+      echo "インストールが完了しました" ;;
 
-read -p "Redisをインストールしますか？ (y/n)" ok < /dev/tty
-case ${ok} in
+  n|N)
+    echo "インストールをスキップしました" ;;
+esac
+echo " ------------ END ------------"
+
+echo " ------------ Redis ------------"
+read -p "Redisをインストールしますか？ (y/n)" Answer < /dev/tty
+case ${Answer} in
   y|Y) brew install redis
-      echo "インストールが完了しました。" ;;
+      echo "インストールが完了しました" ;;
+  n|N)
+    echo "インストールをスキップしました" ;;
 esac
+echo " ------------ END ------------"
 
-read -p "yarnをインストールしますか？ (y/n)" ok < /dev/tty
-case ${ok} in
+echo " ------------ Yarn ------------"
+read -p "yarnをインストールしますか？ (y/n)" Answer < /dev/tty
+case ${Answer} in
   y|Y) brew install yarn
-       echo "インストールが完了しました。" ;;
+       echo "インストールが完了しました" ;;
+  n|N)
+    echo "インストールをスキップしました" ;;
 esac
+echo " ------------ END ------------"
 
 
 

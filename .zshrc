@@ -1,8 +1,9 @@
+# Created by newuser for 5.8
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/yuta_ushizima/.oh-my-zsh"
+# export ZSH="/Users/yuta_ushizima/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -73,7 +74,7 @@ plugins=(
 # zsh-completionsのコマンド補完リロード設定
 autoload -U compinit && compinit -u
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -106,9 +107,6 @@ source $ZSH/oh-my-zsh.sh
 
 # 追加したソフトやパッケージ用のコマンドのパスを通す
 # export PATH=/usr/local/bin:$PATH
-# Java
-export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
-PATH=${JAVA_HOME}/bin:${PATH}
 
 # GradleのPATHを通す
 export PATH="/Applications/Android Studio 3.2 Preview.app/Contents/gradle/gradle-4.5/bin":$PATH
@@ -179,9 +177,9 @@ alias gbc="git branch | grep "feature" | xargs git branch -D"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 #zsh-syntax-highlighting
-source ~/.scripts/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl/include"
 
-eval "$(direnv hook bash)"
+# eval "$(direnv hook bash)"
